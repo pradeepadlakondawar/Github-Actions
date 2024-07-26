@@ -4,16 +4,17 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # you can specify on which container/agent you want use
 
     strategy:
       matrix:
         python-version: [3.8, 3.9] # define the versions on which you want to run your code
 
-    steps:
+# here you main functionally starts its likes stages in jenkins where you specify set of action to execute
+    steps: 
       - uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v2   #@v2 is the version of plugin we used
         with:
           python-version: ${{matrix.python-version}}
 
@@ -26,3 +27,7 @@ jobs:
         run: |
           cd src
           python -m pytest addition.py
+          
+# You can test your matrix by printing the current Python version
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"

@@ -24,5 +24,8 @@ jobs:
 
     - name: Check Node.js version
       run: node -v
-
+      
+    - name: Run tests
+      run: npm test
+      working-directory: ./src/Expense Tracker/
 
